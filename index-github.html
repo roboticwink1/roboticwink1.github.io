@@ -308,8 +308,14 @@ button, a { -webkit-tap-highlight-color: transparent; }
   width: 40px;
   height: 40px;
 }
+.experience__logo img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
 .logo--tencent { background: linear-gradient(145deg, #f8fbff, #eef5ff); }
-.logo--cas { background: linear-gradient(145deg, #fbfaff, #f1f2ff); }
+.logo--cas { background: #fff; }
 .institution-mark {
   color: #fff;
   font-weight: 850;
@@ -621,6 +627,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .experience { grid-template-columns: 42px 1fr; gap: 11px; }
   .experience__logo { width: 38px; height: 38px; }
   .experience__logo svg { width: 32px; height: 32px; }
+  .experience__logo img { width: 32px; height: 32px; }
   .paper,
   .paper--compact { grid-template-columns: 1fr; }
   .paper-visual,
@@ -729,7 +736,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
         <li>
 <span class="meta-icon" aria-hidden="true">◆</span>Peking University</li>
         <li>
-<span class="meta-icon" aria-hidden="true">✦</span>Seeking Ph.D. opportunities</li>
+<span class="meta-icon" aria-hidden="true">✦</span>Seeking PhD opportunities</li>
       </ul>
       <div class="profile__links" aria-label="External profiles">
         <a href="mailto:houxuehan@stu.pku.edu.cn" aria-label="Email Xuehan Hou">
@@ -746,9 +753,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
     <main class="content" id="main-content">
       <section class="intro" id="about" aria-labelledby="about-heading">
         <div class="opportunity-banner">
-          <div class="opportunity-banner__eyebrow">Ph.D. Applications · 2027 Intake</div>
-          <strong>I am currently seeking Ph.D. opportunities</strong>
-          <p>If you find my research interests aligning with your group, I would be delighted to hear from you — please feel free to reach out via email.</p>
+          <div class="opportunity-banner__eyebrow">PhD Applications · 2027 Intake</div>
+          <strong>I am currently seeking PhD opportunities</strong>
+          <p>If you find my research interests aligning with your group, I would be delighted to hear from you — please feel free to contact me.</p>
         </div>
 
         <h2 class="sr-only" id="about-heading">About me</h2>
@@ -967,14 +974,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
         </article>
 
         <article class="experience">
-          <div class="experience__logo logo--cas" role="img" aria-label="Chinese Academy of Sciences icon">
-            <svg viewbox="0 0 64 64" aria-hidden="true">
-              <circle cx="32" cy="32" r="7" fill="#4b55b8"></circle>
-              <ellipse cx="32" cy="32" rx="24" ry="10" fill="none" stroke="#4b55b8" stroke-width="3"></ellipse>
-              <ellipse cx="32" cy="32" rx="24" ry="10" fill="none" stroke="#7079d2" stroke-width="3" transform="rotate(60 32 32)"></ellipse>
-              <ellipse cx="32" cy="32" rx="24" ry="10" fill="none" stroke="#263989" stroke-width="3" transform="rotate(120 32 32)"></ellipse>
-              <circle cx="53" cy="32" r="3.3" fill="#ff9a56"></circle>
-            </svg>
+          <div class="experience__logo logo--cas" role="img" aria-label="Chinese Academy of Sciences">
+            <img src="assets/images/cas-logo.png" alt="CAS" loading="lazy">
           </div>
           <div>
             <div class="experience__header">
