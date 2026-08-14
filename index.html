@@ -411,9 +411,26 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 .paper__links a:hover { background: var(--blue-soft); }
 .paper--compact { grid-template-columns: 150px minmax(0, 1fr); }
-.paper--compact .paper-visual { min-height: 91px; }
+.paper--compact .paper-visual,
+.paper--compact .paper-media { min-height: 91px; }
 .paper--compact .paper__summary { display: none; }
 .footnote { color: var(--muted); font-size: 11.5px; }
+
+.paper-media {
+  min-height: 112px;
+  overflow: hidden;
+  border: 1px solid #dfe6ed;
+  border-radius: 8px;
+  background: #f7f9fb;
+}
+.paper-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 112px;
+  object-fit: contain;
+  background: #fff;
+}
+.paper--compact .paper-media img { min-height: 91px; }
 
 .paper-visual {
   position: relative;
@@ -480,9 +497,17 @@ button, a { -webkit-tap-highlight-color: transparent; }
   gap: 16px;
   align-items: start;
 }
-.institution-mark { width: 52px; height: 52px; font-size: 10px; border-radius: 50%; }
-.mark--pku { background: linear-gradient(145deg, #8f1528, #5d0717); }
-.mark--xjtu { background: linear-gradient(145deg, #2d69a8, #153f70); }
+.education-logo {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+}
+.education-logo img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
 .education-item h3 { margin: 0 0 3px; font-size: 15px; }
 .education-item h3 a { color: var(--ink); text-decoration: none; }
 .education-item h3 a:hover { color: var(--blue); }
@@ -576,7 +601,11 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .paper,
   .paper--compact { grid-template-columns: 130px minmax(0, 1fr); gap: 13px; }
   .paper-visual,
-  .paper--compact .paper-visual { min-height: 88px; }
+  .paper-media,
+  .paper--compact .paper-visual,
+  .paper--compact .paper-media { min-height: 88px; }
+  .paper-media img,
+  .paper--compact .paper-media img { min-height: 88px; }
   .experience__header { flex-direction: column; gap: 1px; }
   .experience__header time { order: -1; }
 }
@@ -595,9 +624,14 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .paper,
   .paper--compact { grid-template-columns: 1fr; }
   .paper-visual,
-  .paper--compact .paper-visual { min-height: 120px; }
+  .paper-media,
+  .paper--compact .paper-visual,
+  .paper--compact .paper-media { min-height: 120px; }
+  .paper-media img,
+  .paper--compact .paper-media img { min-height: 120px; }
   .education-item { grid-template-columns: 46px 1fr; gap: 12px; }
-  .institution-mark { width: 42px; height: 42px; font-size: 8px; }
+  .education-logo { width: 42px; height: 42px; }
+  .education-logo img { width: 40px; height: 40px; }
   .footer { align-items: flex-start; flex-direction: column; gap: 6px; }
 }
 
@@ -673,9 +707,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
       <nav class="nav" id="site-nav" aria-label="Primary navigation">
         <a href="#about">About</a>
         <a href="#news">News</a>
-        <a href="#experience">Experience</a>
         <a href="#research">Research</a>
         <a href="#publications">Publications</a>
+        <a href="#experience">Experience</a>
         <a href="#education">Education</a>
         <a href="#honors">Honors</a>
       </nav>
@@ -686,30 +720,25 @@ button, a { -webkit-tap-highlight-color: transparent; }
     <aside class="profile" aria-label="Profile">
       <img class="profile__photo" src="https://avatars.githubusercontent.com/u/92449351?v=4" alt="Portrait of Xuehan Hou" width="200" height="280">
       <div class="profile__identity">
-        <h1>Xuehan Hou <span>侯雪晗</span></h1>
+        <h1>Xuehan Hou <span>侯雪晗</span>
+</h1>
         <p class="profile__role">M.S. Student in Computer Science<br>Peking University</p>
       </div>
       <p class="profile__bio">Multimodal generation, video generation, world models, and embodied intelligence.</p>
       <ul class="profile__meta">
-        <li><span class="meta-icon" aria-hidden="true">◆</span>Peking University</li>
-        <li><span class="meta-icon" aria-hidden="true">✦</span>Open to Ph.D. opportunities</li>
+        <li>
+<span class="meta-icon" aria-hidden="true">◆</span>Peking University</li>
+        <li>
+<span class="meta-icon" aria-hidden="true">✦</span>Open to Ph.D. opportunities</li>
       </ul>
       <div class="profile__links" aria-label="External profiles">
         <a href="mailto:houxuehan@stu.pku.edu.cn" aria-label="Email Xuehan Hou">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5Zm2 2v.5l7 5 7-5V7H5Zm14 10V9.9l-7 5-7-5V17h14Z"/></svg>
+          <svg viewbox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5Zm2 2v.5l7 5 7-5V7H5Zm14 10V9.9l-7 5-7-5V17h14Z"></path></svg>
           Email
         </a>
         <a href="https://github.com/roboticwink1" target="_blank" rel="noreferrer">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .7a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.2.8-.6v-2.2c-3.4.7-4.1-1.4-4.1-1.4-.5-1.4-1.3-1.7-1.3-1.7-1.1-.8.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0C14.8 4 16 4.3 16 4.3c.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.7c0 .4.2.7.8.6A11.5 11.5 0 0 0 12 .7Z"/></svg>
+          <svg viewbox="0 0 24 24" aria-hidden="true"><path d="M12 .7a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.2.8-.6v-2.2c-3.4.7-4.1-1.4-4.1-1.4-.5-1.4-1.3-1.7-1.3-1.7-1.1-.8.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0C14.8 4 16 4.3 16 4.3c.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.7c0 .4.2.7.8.6A11.5 11.5 0 0 0 12 .7Z"></path></svg>
           GitHub
-        </a>
-        <a href="https://scholar.google.com/citations?user=reLK2wkAAAAJ&hl=en" target="_blank" rel="noreferrer">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 10 6-4 2.4V16l-2 1.2v-5.6L12 14 2 8l10-6Zm-7 9.8 7 4.2 4-2.4V18c-2.8 2.2-7.2 2.2-10 0v-5.6l-1-.6Z"/></svg>
-          Google Scholar
-        </a>
-        <a href="https://openreview.net/profile?id=~Xuehan_Hou1" target="_blank" rel="noreferrer">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h11l5 5v13H4V3Zm2 2v14h12V9h-4V5H6Zm2 7h8v2H8v-2Zm0 4h6v2H8v-2Zm0-8h4v2H8V8Z"/></svg>
-          OpenReview
         </a>
       </div>
     </aside>
@@ -728,71 +757,31 @@ button, a { -webkit-tap-highlight-color: transparent; }
       </section>
 
       <section class="section" id="news" aria-labelledby="news-title">
-        <h2 id="news-title"><span aria-hidden="true">◆</span> News</h2>
+        <h2 id="news-title">
+<span aria-hidden="true">◆</span> News</h2>
         <ul class="timeline news-list">
-          <li><time>2026.08</time><div>Released <strong>Hallucination-Free GUI Grounding</strong> as an arXiv preprint.</div></li>
-          <li><time>2026</time><div>Served as a reviewer for the <strong>NeurIPS 2026 Evaluations &amp; Datasets Track</strong>.</div></li>
-          <li><time>2026.02</time><div>Joined <strong>Tencent Shannon Lab</strong> as a research intern.</div></li>
-          <li><time>2026</time><div><strong>Anchor Frame Bridging</strong> was accepted to ICLR 2026.</div></li>
-          <li><time>2025.12</time><div>Joined the <strong>Institute of Automation, Chinese Academy of Sciences</strong> as a research intern.</div></li>
+          <li>
+<time>2026.08</time><div>Released <strong>Hallucination-Free GUI Grounding</strong> as an arXiv preprint.</div>
+</li>
+          <li>
+<time>2026</time><div>Served as a reviewer for the <strong>NeurIPS 2026 Evaluations &amp; Datasets Track</strong>.</div>
+</li>
+          <li>
+<time>2026.02</time><div>Joined <strong>Tencent Shannon Lab</strong> as a research intern.</div>
+</li>
+          <li>
+<time>2026</time><div>
+<strong>Anchor Frame Bridging</strong> was accepted to ICLR 2026.</div>
+</li>
+          <li>
+<time>2025.12</time><div>Joined the <strong>Institute of Automation, Chinese Academy of Sciences</strong> as a research intern.</div>
+</li>
         </ul>
       </section>
 
-      <section class="section" id="experience" aria-labelledby="experience-title">
-        <h2 id="experience-title"><span aria-hidden="true">▣</span> Research Experience</h2>
-
-        <article class="experience">
-          <div class="experience__logo logo--tencent" role="img" aria-label="Tencent logo">
-            <svg viewBox="0 0 64 64" aria-hidden="true">
-              <path d="M9 19h20L34 5l25 24H37L31 59H16l7-30H9Z" fill="#0759d9"/>
-              <path d="M29 19h14l16 10H37Z" fill="#2d86ff" opacity=".72"/>
-            </svg>
-          </div>
-          <div>
-            <div class="experience__header">
-              <div>
-                <h3>Tencent · Shannon Lab</h3>
-                <p>Algorithm Research Intern</p>
-              </div>
-              <time>Feb. 2026 — Present</time>
-            </div>
-            <ul>
-              <li><strong>Game clipping detection and repair:</strong> built anomaly-detection data and a benchmark for geometric intersection and occlusion failures in game videos.</li>
-              <li><strong>Streaming audio-visual editing:</strong> developed an LTX-2.3-based video-to-video editing framework, trained a bidirectional audio-visual editor, and designed a three-stage causal distillation route covering attention causality, step reduction, and CFG-free inference.</li>
-              <li><strong>Real-time game frame generation:</strong> designed a pseudo G-buffer pipeline that estimates depth, motion vectors, camera pose, and occlusion from conventional videos; explored diffusion-teacher distillation and difficult-region synthesis.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="experience">
-          <div class="experience__logo logo--cas" role="img" aria-label="Chinese Academy of Sciences icon">
-            <svg viewBox="0 0 64 64" aria-hidden="true">
-              <circle cx="32" cy="32" r="7" fill="#4b55b8"/>
-              <ellipse cx="32" cy="32" rx="24" ry="10" fill="none" stroke="#4b55b8" stroke-width="3"/>
-              <ellipse cx="32" cy="32" rx="24" ry="10" fill="none" stroke="#7079d2" stroke-width="3" transform="rotate(60 32 32)"/>
-              <ellipse cx="32" cy="32" rx="24" ry="10" fill="none" stroke="#263989" stroke-width="3" transform="rotate(120 32 32)"/>
-              <circle cx="53" cy="32" r="3.3" fill="#ff9a56"/>
-            </svg>
-          </div>
-          <div>
-            <div class="experience__header">
-              <div>
-                <h3>Institute of Automation, Chinese Academy of Sciences</h3>
-                <p>Research Intern</p>
-              </div>
-              <time>Dec. 2025 — Feb. 2026</time>
-            </div>
-            <ul>
-              <li>Studied brain-inspired linear attention for unified multimodal understanding and generation.</li>
-              <li>Trained Show-o2 and decoupled two attention parameter groups for separate storage and optimization, enabling a “decouple first, linearize next” model-conversion path.</li>
-              <li>Reproduced and trained SANA, explored linear attention for image/video generation, and investigated high-resolution image distortions.</li>
-            </ul>
-          </div>
-        </article>
-      </section>
-
       <section class="section" id="research" aria-labelledby="research-title">
-        <h2 id="research-title"><span aria-hidden="true">◇</span> Research Interests</h2>
+        <h2 id="research-title">
+<span aria-hidden="true">◇</span> Research Interests</h2>
         <div class="interest-grid">
           <article>
             <span>01</span>
@@ -818,61 +807,69 @@ button, a { -webkit-tap-highlight-color: transparent; }
       </section>
 
       <section class="section publications" id="publications" aria-labelledby="publications-title">
-        <h2 id="publications-title"><span aria-hidden="true">▤</span> Publications</h2>
-        <p class="section-note">First-author work is listed first. <strong>Xuehan Hou</strong> is highlighted in all author lists.</p>
-
-        <h3 class="subsection-title">First-Author Publications &amp; Manuscripts</h3>
+        <h2 id="publications-title">
+<span aria-hidden="true">▤</span> Publications</h2>
+        <p class="section-note">*: indicates equal contribution; #: indicates corresponding author. <strong>Xuehan Hou</strong> is highlighted in all author lists.</p>
+<h3 class="subsection-title">First-Author Publications</h3>
 
         <article class="paper">
-          <div class="paper-visual visual-afb" role="img" aria-label="Abstract illustration of bridging first and last video frames"><span>AFB</span></div>
-          <div class="paper__body">
-            <div class="paper__badges"><span class="badge badge--accepted">ICLR 2026</span><span class="badge">Accepted</span></div>
+          <div class="paper-media"><img src="assets/images/afb-intro.png" alt="Anchor Frame Bridging method overview" loading="lazy"></div>
+<div class="paper__body">
+            <div class="paper__badges">
+<span class="badge badge--accepted">ICLR 2026</span><span class="badge">Accepted</span>
+</div>
             <h4>Anchor Frame Bridging for Coherent First-Last Frame Video Generation</h4>
-            <p class="authors"><strong>Xuehan Hou</strong>, Meng Fan, Pengchong Qiao, Zesen Cheng, Yian Zhao, Lei Zhu, Kaiwen Cheng, Chang Liu, Jie Chen</p>
-            <p class="paper__summary">A training-free anchor-frame bridging method that transfers semantic constraints from both boundary frames to improve temporal coherence across a generated video.</p>
-            <div class="paper__links"><a href="https://openreview.net/profile?id=~Xuehan_Hou1" target="_blank" rel="noreferrer">OpenReview</a></div>
+            <p class="authors"><strong>Xuehan Hou</strong>, Meng Fan, Pengchong Qiao, Zesen Cheng, Yian Zhao, Lei Zhu, Kaiwen Cheng, Chang Liu, Jie Chen#</p>
+<p class="paper__summary">A training-free anchor-frame bridging method that transfers semantic constraints from both boundary frames to improve temporal coherence across a generated video.</p>
+            <div class="paper__links"><a href="https://openreview.net/forum?id=isNjWnVsUR" target="_blank" rel="noreferrer">Paper</a></div>
           </div>
         </article>
 
         <article class="paper">
           <div class="paper-visual visual-demo" role="img" aria-label="Abstract illustration of a chain of human motions"><span>DemoChain</span></div>
           <div class="paper__body">
-            <div class="paper__badges"><span class="badge badge--revision">IEEE TCSVT</span><span class="badge">Minor Revision</span></div>
+            <div class="paper__badges">
+<span class="badge badge--revision">IEEE TCSVT</span><span class="badge">Minor Revision</span>
+</div>
             <h4>DemoChain: Decoupled Motion-Chain for Multi-Action Video Generation</h4>
-            <p class="authors"><strong>Xuehan Hou</strong>, et al.</p>
-            <p class="paper__summary">A multi-action human video generation framework that extracts physical motion priors from multimodal language models and visualizes them through image-agent guidance.</p>
+            <p class="authors"><strong>Xuehan Hou</strong>, Hongyu Zhang, Ailing Zhang, Ruochong Zheng, Yufan Deng, Yuxin Qin, Mulan Yang, Chang Liu, Jie Chen#</p>
+<p class="paper__summary">A multi-action human video generation framework that extracts physical motion priors from multimodal language models and visualizes them through image-agent guidance.</p>
           </div>
         </article>
 
         <article class="paper">
           <div class="paper-visual visual-asv" role="img" aria-label="Abstract streaming timeline with a fine-grained trigger"><span>ASVBench</span></div>
           <div class="paper__body">
-            <div class="paper__badges"><span class="badge badge--review">AAAI 2027</span><span class="badge">Under Review</span></div>
+            <div class="paper__badges">
+<span class="badge badge--review">AAAI 2027</span><span class="badge">Under Review</span>
+</div>
             <h4>ASVBench: Asynchronous Response to Fine-Grained Triggers in Streaming Videos</h4>
-            <p class="authors"><strong>Xuehan Hou</strong>, et al.</p>
-            <p class="paper__summary">A benchmark for asynchronous responses to fine-grained triggers in streaming video, evaluating temporal delay and cognitive difficulty beyond immediate question answering.</p>
+            <p class="authors"><strong>Xuehan Hou</strong>, Zesen Cheng, Tiange Zhang, Hongyu Zhang, Ailing Zhang, Mujie Lin, Chang Liu, Jie Chen#</p>
+<p class="paper__summary">A benchmark for asynchronous responses to fine-grained triggers in streaming video, evaluating temporal delay and cognitive difficulty beyond immediate question answering.</p>
           </div>
         </article>
 
         <article class="paper">
           <div class="paper-visual visual-sign" role="img" aria-label="Abstract multi-level controls for sign-language video"><span>SignControl</span></div>
           <div class="paper__body">
-            <div class="paper__badges"><span class="badge badge--review">WACV 2027</span><span class="badge">Under Review</span></div>
+            <div class="paper__badges">
+<span class="badge badge--review">WACV 2027</span><span class="badge">Under Review</span>
+</div>
             <h4>SignControl: Multi-Granular Control for Sign Language Video Generation</h4>
-            <p class="authors"><strong>Xuehan Hou</strong>, et al.</p>
-            <p class="paper__summary">A hierarchical multimodal control framework that coordinates pose, optical flow, and depth while remaining robust to incomplete control signals.</p>
+            <p class="authors"><strong>Xuehan Hou</strong>, Liuzhou Zhang, Biao Wu, Zeyu Zhang, Huacan Wang, Qizhen Lan, Ronghao Chen, Renda Han, Wenxin Zhang, Hongyang He, Hoi Leong Lee, Yang Zhao, Zheng Zhu#</p>
+<p class="paper__summary">A hierarchical multimodal control framework that coordinates pose, optical flow, and depth while remaining robust to incomplete control signals.</p>
           </div>
         </article>
 
-        <h3 class="subsection-title">Co-authored Publications &amp; Manuscripts</h3>
+        <h3 class="subsection-title">Co-authored Publications</h3>
 
         <article class="paper paper--compact">
-          <div class="paper-visual visual-attn" role="img" aria-label="Abstract compositional attention illustration"><span>Comp-Attn</span></div>
-          <div class="paper__body">
+          <div class="paper-media"><img src="assets/images/comp-attn-intro.png" alt="Comp-Attn introduction figure" loading="lazy"></div>
+<div class="paper__body">
             <div class="paper__badges"><span class="badge badge--accepted">ICML 2026</span></div>
             <h4>Comp-Attn: Present-and-Align Attention for Compositional Video Generation</h4>
-            <p class="authors">Hongyu Zhang*, Yufan Deng*, Shenghai Yuan, <strong>Xuehan Hou</strong>, Yian Zhao, Peng Jin, Chang Liu, Jie Chen</p>
-            <div class="paper__links"><a href="https://arxiv.org/abs/2503.14428" target="_blank" rel="noreferrer">Paper</a></div>
+            <p class="authors">Hongyu Zhang*, Yufan Deng*, Shenghai Yuan, Yian Zhao, Peng Jin, <strong>Xuehan Hou</strong>, Chang Liu, Jie Chen#</p>
+<div class="paper__links"><a href="https://arxiv.org/abs/2503.14428" target="_blank" rel="noreferrer">Paper</a></div>
           </div>
         </article>
 
@@ -882,7 +879,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
             <div class="paper__badges"><span class="badge badge--accepted">ECCV 2026</span></div>
             <h4>RealDyadic: Synthesizing Realistic Dyadic 3D Dialogue with Neural Appearance Priors</h4>
             <p class="authors">Lei Zhu, Lijian Lin, Ye Zhu, <strong>Xuehan Hou</strong>, Jiahao Wu, Yu Li, Yunfei Liu, Jie Chen</p>
-          </div>
+</div>
         </article>
 
         <article class="paper paper--compact">
@@ -891,7 +888,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
             <div class="paper__badges"><span class="badge badge--accepted">ACM MM 2026</span></div>
             <h4>ModUni: Unified Visual Tokenization via Pre-Quantization Gating</h4>
             <p class="authors">Xin Shan, Peng Jin, Zheng Liu, Zijun Liao, Yufan Deng, Yiheng Tao, <strong>Xuehan Hou</strong>, Mujie Lin, Shuyu Wang</p>
-          </div>
+</div>
         </article>
 
         <article class="paper paper--compact">
@@ -899,54 +896,118 @@ button, a { -webkit-tap-highlight-color: transparent; }
           <div class="paper__body">
             <div class="paper__badges"><span class="badge badge--accepted">AAAI 2026</span></div>
             <h4>BiHiTo: Biomolecular Hierarchy-inspired Tokenization</h4>
-            <p class="authors">Ruochong Zheng, Yutian Liu, Yian Zhao, Zhiwei Nie, <strong>Xuehan Hou</strong>, Chang Liu, Siwei Ma, Youdong Mao, Jie Chen</p>
-          </div>
+            <p class="authors">Ruochong Zheng*, Yutian Liu*, Yian Zhao, Zhiwei Nie, <strong>Xuehan Hou</strong>, Chang Liu#, Siwei Ma#, Youdong Mao#, Jie Chen#</p>
+<div class="paper__links"><a href="https://doi.org/10.1609/aaai.v40i34.40119" target="_blank" rel="noreferrer">Paper</a></div>
+</div>
         </article>
 
         <article class="paper paper--compact">
           <div class="paper-visual visual-pace" role="img" aria-label="Abstract diffusion cache schedule illustration"><span>PACE</span></div>
           <div class="paper__body">
-            <div class="paper__badges"><span class="badge badge--review">AAAI 2027</span><span class="badge">Under Review</span></div>
+            <div class="paper__badges">
+<span class="badge badge--review">AAAI 2027</span><span class="badge">Under Review</span>
+</div>
             <h4>PACE: Phase-Aware Cache Scheduling for Accelerating Diffusion Models</h4>
             <p class="authors">Zhongjing Du, <strong>Xuehan Hou</strong>, Lei Zhu, Xiao Chen, Yuxuan Chen, Zhihao Li, Hongbo Jin, Chang Liu, Jie Chen</p>
-          </div>
+</div>
         </article>
 
         <article class="paper paper--compact">
           <div class="paper-visual visual-knot" role="img" aria-label="Abstract spectral knot topology illustration"><span>SpecKnot</span></div>
           <div class="paper__body">
-            <div class="paper__badges"><span class="badge badge--review">AAAI 2027</span><span class="badge">Under Review</span></div>
+            <div class="paper__badges">
+<span class="badge badge--review">AAAI 2027</span><span class="badge">Under Review</span>
+</div>
             <h4>SpecKnot: Spectrally Guided Topology Modeling for Knotted Protein Backbone Generation</h4>
             <p class="authors">Meng Fan, Yutian Liu, <strong>Xuehan Hou</strong>, Hongxin Fu, Kaiwen Cheng, Yu-Xiang Wang, Chang Liu, Zhiwei Nie, Wenbin Zhang, Jie Chen</p>
-          </div>
+</div>
         </article>
 
         <article class="paper paper--compact">
-          <div class="paper-visual visual-gui" role="img" aria-label="Abstract GUI grounding illustration"><span>GUI Grounding</span></div>
-          <div class="paper__body">
-            <div class="paper__badges"><span class="badge badge--preprint">arXiv:2608.09654</span><span class="badge">Preprint</span></div>
+          <div class="paper-media"><img src="assets/images/gui-intro.png" alt="GUI grounding framework overview" loading="lazy"></div>
+<div class="paper__body">
+            <div class="paper__badges">
+<span class="badge badge--preprint">arXiv:2608.09654</span><span class="badge">Preprint</span>
+</div>
             <h4>Hallucination-Free GUI Grounding via Regression-Free Layout-Aware Matching</h4>
             <p class="authors">Yuke Li, <strong>Xuehan Hou</strong></p>
-            <div class="paper__links"><a href="https://arxiv.org/abs/2608.09654" target="_blank" rel="noreferrer">Paper</a></div>
+<div class="paper__links"><a href="https://arxiv.org/abs/2608.09654" target="_blank" rel="noreferrer">Paper</a></div>
           </div>
         </article>
-        <p class="footnote">* Equal contribution.</p>
+        </section>
+
+      <section class="section" id="experience" aria-labelledby="experience-title">
+        <h2 id="experience-title">
+<span aria-hidden="true">▣</span> Research Experience</h2>
+
+        <article class="experience">
+          <div class="experience__logo logo--tencent" role="img" aria-label="Tencent logo">
+            <svg viewbox="0 0 64 64" aria-hidden="true">
+              <path d="M9 19h20L34 5l25 24H37L31 59H16l7-30H9Z" fill="#0759d9"></path>
+              <path d="M29 19h14l16 10H37Z" fill="#2d86ff" opacity=".72"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="experience__header">
+              <div>
+                <h3>Tencent · Shannon Lab</h3>
+                <p>Algorithm Research Intern</p>
+              </div>
+              <time>Feb. 2026 — Present</time>
+            </div>
+            <ul>
+              <li>
+<strong>Game clipping detection and repair:</strong> built anomaly-detection data and a benchmark for geometric intersection and occlusion failures in game videos.</li>
+              <li>
+<strong>Streaming audio-visual editing:</strong> developed an LTX-2.3-based video-to-video editing framework, trained a bidirectional audio-visual editor, and designed a three-stage causal distillation route covering attention causality, step reduction, and CFG-free inference.</li>
+              <li>
+<strong>Real-time game frame generation:</strong> designed a pseudo G-buffer pipeline that estimates depth, motion vectors, camera pose, and occlusion from conventional videos; explored diffusion-teacher distillation and difficult-region synthesis.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="experience">
+          <div class="experience__logo logo--cas" role="img" aria-label="Chinese Academy of Sciences icon">
+            <svg viewbox="0 0 64 64" aria-hidden="true">
+              <circle cx="32" cy="32" r="7" fill="#4b55b8"></circle>
+              <ellipse cx="32" cy="32" rx="24" ry="10" fill="none" stroke="#4b55b8" stroke-width="3"></ellipse>
+              <ellipse cx="32" cy="32" rx="24" ry="10" fill="none" stroke="#7079d2" stroke-width="3" transform="rotate(60 32 32)"></ellipse>
+              <ellipse cx="32" cy="32" rx="24" ry="10" fill="none" stroke="#263989" stroke-width="3" transform="rotate(120 32 32)"></ellipse>
+              <circle cx="53" cy="32" r="3.3" fill="#ff9a56"></circle>
+            </svg>
+          </div>
+          <div>
+            <div class="experience__header">
+              <div>
+                <h3>Institute of Automation, Chinese Academy of Sciences</h3>
+                <p>Research Intern</p>
+              </div>
+              <time>Dec. 2025 — Feb. 2026</time>
+            </div>
+            <ul>
+              <li>Studied brain-inspired linear attention for unified multimodal understanding and generation.</li>
+              <li>Trained Show-o2 and decoupled two attention parameter groups for separate storage and optimization, enabling a “decouple first, linearize next” model-conversion path.</li>
+              <li>Reproduced and trained SANA, explored linear attention for image/video generation, and investigated high-resolution image distortions.</li>
+            </ul>
+          </div>
+        </article>
       </section>
 
       <section class="section" id="education" aria-labelledby="education-title">
-        <h2 id="education-title"><span aria-hidden="true">▰</span> Education</h2>
+        <h2 id="education-title">
+<span aria-hidden="true">▰</span> Education</h2>
         <div class="education-list">
           <article class="education-item">
-            <div class="institution-mark mark--pku">PKU</div>
-            <div>
+            <div class="education-logo"><img src="assets/images/pku-logo.png" alt="Peking University logo" loading="lazy"></div>
+<div>
               <h3><a href="https://english.pku.edu.cn/" target="_blank" rel="noreferrer">Peking University</a></h3>
               <p><strong>M.S. in Computer Application Technology</strong> · Sep. 2024 — Present</p>
               <p>Advisor: Prof. Jie Chen · GPA: 3.89/4.00</p>
             </div>
           </article>
           <article class="education-item">
-            <div class="institution-mark mark--xjtu">XJTU</div>
-            <div>
+            <div class="education-logo"><img src="assets/images/xjtu-logo.png" alt="Xi'an Jiaotong University logo" loading="lazy"></div>
+<div>
               <h3><a href="https://en.xjtu.edu.cn/" target="_blank" rel="noreferrer">Xi’an Jiaotong University</a></h3>
               <p><strong>B.Eng. in Software Engineering</strong> · Sep. 2020 — Jun. 2024</p>
               <p>Average: 88.59/100 · Rank: 3/140</p>
@@ -956,23 +1017,40 @@ button, a { -webkit-tap-highlight-color: transparent; }
       </section>
 
       <section class="section" id="service" aria-labelledby="service-title">
-        <h2 id="service-title"><span aria-hidden="true">✧</span> Academic Service</h2>
+        <h2 id="service-title">
+<span aria-hidden="true">✧</span> Academic Service</h2>
         <ul class="clean-list">
-          <li><strong>Reviewer</strong>, NeurIPS 2026 Evaluations &amp; Datasets Track</li>
-          <li><strong>Teaching Assistant</strong>, Interactive Intelligence, Peking University</li>
-          <li><strong>Conference participation</strong>, VALSE 2026 and CVPR 2026</li>
+          <li>
+<strong>Reviewer</strong>, NeurIPS 2026 Evaluations &amp; Datasets Track</li>
+          <li>
+<strong>Teaching Assistant</strong>, Interactive Intelligence, Peking University</li>
+          <li>
+<strong>Conference participation</strong>, VALSE 2026 and CVPR 2026</li>
         </ul>
       </section>
 
       <section class="section" id="honors" aria-labelledby="honors-title">
-        <h2 id="honors-title"><span aria-hidden="true">◆</span> Selected Honors &amp; Awards</h2>
+        <h2 id="honors-title">
+<span aria-hidden="true">◆</span> Honors &amp; Awards</h2>
         <ul class="timeline honors-list">
-          <li><time>2025</time><div>Peking University Academic Excellence Award</div></li>
-          <li><time>2024</time><div>Outstanding Graduate, Xi’an Jiaotong University</div></li>
-          <li><time>2023</time><div>Finalist, Mathematical Contest in Modeling</div></li>
-          <li><time>2022</time><div>National Scholarship</div></li>
-          <li><time>2022</time><div>National Second Prize, “Challenge Cup” Entrepreneurship Competition</div></li>
-          <li><time>2021</time><div>National Third Prize, National English Competition for College Students</div></li>
+          <li>
+<time>2025</time><div>Peking University Academic Excellence Award</div>
+</li>
+          <li>
+<time>2024</time><div>Outstanding Graduate, Xi’an Jiaotong University</div>
+</li>
+          <li>
+<time>2023</time><div>Finalist, Mathematical Contest in Modeling</div>
+</li>
+          <li>
+<time>2022</time><div>National Scholarship</div>
+</li>
+          <li>
+<time>2022</time><div>National Second Prize, “Challenge Cup” Entrepreneurship Competition</div>
+</li>
+          <li>
+<time>2021</time><div>National Third Prize, National English Competition for College Students</div>
+</li>
         </ul>
       </section>
 
