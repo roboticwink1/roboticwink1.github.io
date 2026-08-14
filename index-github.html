@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Xuehan Hou — multimodal generation, video generation, world models, and embodied intelligence.">
+  <meta name="author" content="Xuehan Hou">
+  <meta name="theme-color" content="#ffffff">
+  <title>Xuehan Hou · Homepage</title>
+  <style>
+:root {
+  --ink: #18202b;
+  --muted: #5f6b78;
+  --line: #e4e9ee;
+  --soft-line: #eef2f5;
+  --blue: #1559a8;
+  --blue-deep: #0d3f79;
+  --blue-soft: #eaf3ff;
+  --coral: #f08b6e;
+  --coral-soft: #fff4ee;
+  --green: #2b8a6e;
+  --green-soft: #eaf7f2;
+  --violet: #6f56b7;
+  --violet-soft: #f1edfb;
+  --gold: #a76a05;
+  --gold-soft: #fff5df;
+  --page: #ffffff;
+  --paper: #ffffff;
+  --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --serif: Georgia, "Times New Roman", serif;
+  --radius: 10px;
+  --shadow: 0 9px 30px rgba(28, 45, 67, 0.08);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--page);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.68;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--blue-deep); }
+button, a { -webkit-tap-highlight-color: transparent; }
+
+.skip-link,
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+.skip-link:focus {
+  position: fixed !important;
+  inset: 10px auto auto 10px;
+  width: auto !important;
+  height: auto !important;
+  padding: 10px 14px !important;
+  margin: 0 !important;
+  clip: auto !important;
+  overflow: visible !important;
+  background: #fff;
+  border: 1px solid var(--blue);
+  border-radius: 6px;
+  z-index: 100;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255,255,255,.94);
+  border-bottom: 1px solid var(--soft-line);
+  backdrop-filter: blur(12px);
+}
+.topbar__inner {
+  max-width: 1220px;
+  min-height: 56px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.brand {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--blue-deep);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-decoration: none;
+  flex: 0 0 auto;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+.nav a {
+  position: relative;
+  padding: 17px 10px 15px;
+  color: #4c5966;
+  font-size: 13px;
+  font-weight: 650;
+  text-decoration: none;
+}
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 9px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--blue);
+  transform: scaleX(0);
+  transition: transform .18s ease;
+}
+.nav a:hover,
+.nav a.is-active { color: var(--blue-deep); }
+.nav a:hover::after,
+.nav a.is-active::after { transform: scaleX(1); }
+.nav-toggle { display: none; }
+
+.layout {
+  width: min(1180px, calc(100% - 40px));
+  margin: 34px auto 0;
+  display: grid;
+  grid-template-columns: 224px minmax(0, 1fr);
+  gap: 54px;
+  align-items: start;
+}
+.profile {
+  position: sticky;
+  top: 88px;
+  align-self: start;
+  padding-bottom: 30px;
+}
+.profile__photo {
+  width: 148px;
+  height: 148px;
+  object-fit: cover;
+  object-position: center 25%;
+  border-radius: 50%;
+  border: 1px solid #dfe5ea;
+  box-shadow: 0 0 0 6px #fff, 0 0 0 7px #eef1f4;
+}
+.profile__identity h1 {
+  margin: 22px 0 7px;
+  font-size: 22px;
+  line-height: 1.12;
+  letter-spacing: -.025em;
+}
+.profile__identity h1 span {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .08em;
+}
+.profile__role,
+.profile__bio {
+  margin: 0 0 14px;
+  color: #394552;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.profile__bio { color: var(--muted); }
+.profile__meta,
+.profile__links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.profile__meta {
+  padding: 13px 0;
+  border-top: 1px solid var(--soft-line);
+  border-bottom: 1px solid var(--soft-line);
+}
+.profile__meta li {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin: 5px 0;
+  color: #485563;
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+.meta-icon { color: var(--blue); font-size: 9px; margin-top: 4px; }
+.profile__links { padding-top: 12px; }
+.profile__links a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: max-content;
+  padding: 4px 0;
+  color: #3d4955;
+  font-size: 12.5px;
+  text-decoration: none;
+}
+.profile__links a:hover { color: var(--blue); }
+.profile__links svg { width: 16px; height: 16px; fill: currentColor; flex: 0 0 auto; }
+
+.content { min-width: 0; max-width: 850px; }
+.intro { font-size: 15.5px; }
+.intro p { margin: 0 0 15px; }
+.opportunity-banner {
+  margin: 0 0 28px;
+  padding: 17px 19px;
+  border: 1px solid #f6daca;
+  border-left: 4px solid var(--coral);
+  border-radius: 8px;
+  background: linear-gradient(105deg, #fff8f4, #fffdfb);
+  box-shadow: 0 7px 18px rgba(145, 77, 50, .05);
+}
+.opportunity-banner__eyebrow {
+  margin-bottom: 5px;
+  color: #a75d47;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.opportunity-banner strong { display: block; margin-bottom: 2px; font-size: 16px; }
+.opportunity-banner p { margin: 0; color: #5e514d; font-size: 13px; }
+
+.section { margin-top: 48px; }
+.section > h2 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 19px;
+  padding-bottom: 9px;
+  border-bottom: 2px solid var(--line);
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -.025em;
+}
+.section > h2 span { color: var(--blue); font-size: 15px; }
+.section-note { margin: -7px 0 22px; color: var(--muted); font-size: 12.5px; }
+.subsection-title {
+  margin: 28px 0 12px;
+  color: #394655;
+  font-size: 15px;
+  letter-spacing: .015em;
+}
+
+.timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.timeline li {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 14px;
+  padding: 5px 0;
+}
+.timeline time {
+  color: var(--blue-deep);
+  font-family: var(--serif);
+  font-size: 13px;
+  font-style: italic;
+  font-weight: 700;
+}
+.news-list li div,
+.honors-list li div { font-size: 13.5px; }
+
+.experience {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 16px;
+  margin: 0 0 26px;
+}
+.experience__logo,
+.institution-mark {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  box-shadow: 0 5px 14px rgba(22, 48, 83, .12);
+}
+.experience__logo {
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e1e7ed;
+}
+.experience__logo svg {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+.logo--tencent { background: linear-gradient(145deg, #f8fbff, #eef5ff); }
+.logo--cas { background: linear-gradient(145deg, #fbfaff, #f1f2ff); }
+.institution-mark {
+  color: #fff;
+  font-weight: 850;
+  letter-spacing: -.03em;
+}
+.experience__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 7px;
+}
+.experience__header h3 { margin: 0 0 2px; font-size: 16px; }
+.experience__header p { margin: 0; color: var(--muted); font-size: 12.5px; }
+.experience__header time { color: var(--muted); font-size: 12px; white-space: nowrap; }
+.experience ul,
+.clean-list { margin: 8px 0 0; padding-left: 19px; }
+.experience li,
+.clean-list li { margin: 5px 0; font-size: 13.5px; }
+
+.interest-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.interest-grid article {
+  position: relative;
+  min-height: 144px;
+  padding: 19px 18px 17px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.interest-grid article:hover { transform: translateY(-2px); border-color: #c9d9eb; box-shadow: var(--shadow); }
+.interest-grid article > span {
+  position: absolute;
+  top: 8px;
+  right: 13px;
+  color: #e7edf3;
+  font-family: var(--serif);
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1;
+}
+.interest-grid h3 { position: relative; margin: 0 0 8px; font-size: 15px; }
+.interest-grid p { position: relative; margin: 0; color: var(--muted); font-size: 12.7px; line-height: 1.55; }
+
+.paper {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 18px;
+  padding: 14px 0 16px;
+  border-bottom: 1px solid var(--soft-line);
+}
+.paper:first-of-type { border-top: 1px solid var(--soft-line); }
+.paper__body { min-width: 0; }
+.paper__badges { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: #edf1f5;
+  color: #53606d;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: .015em;
+}
+.badge--accepted { background: var(--blue-soft); color: var(--blue-deep); }
+.badge--revision { background: var(--gold-soft); color: var(--gold); }
+.badge--review { background: var(--violet-soft); color: var(--violet); }
+.badge--preprint { background: var(--green-soft); color: var(--green); }
+.paper h4 {
+  margin: 0 0 5px;
+  color: #172230;
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.35;
+}
+.authors,
+.paper__summary { margin: 0 0 6px; font-size: 12px; line-height: 1.52; }
+.authors { color: #4d5966; }
+.authors strong { color: #172230; }
+.paper__summary { color: var(--muted); }
+.paper__links { display: flex; gap: 8px; margin-top: 7px; }
+.paper__links a {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border: 1px solid #c8d9eb;
+  border-radius: 5px;
+  color: var(--blue);
+  font-size: 10.5px;
+  font-weight: 800;
+  text-decoration: none;
+}
+.paper__links a:hover { background: var(--blue-soft); }
+.paper--compact { grid-template-columns: 150px minmax(0, 1fr); }
+.paper--compact .paper-visual,
+.paper--compact .paper-media { min-height: 91px; }
+.paper--compact .paper__summary { display: none; }
+.footnote { color: var(--muted); font-size: 11.5px; }
+
+.paper-media {
+  min-height: 112px;
+  overflow: hidden;
+  border: 1px solid #dfe6ed;
+  border-radius: 8px;
+  background: #f7f9fb;
+}
+.paper-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 112px;
+  object-fit: contain;
+  background: #fff;
+}
+.paper--compact .paper-media img { min-height: 91px; }
+
+.paper-visual {
+  position: relative;
+  min-height: 112px;
+  overflow: hidden;
+  border: 1px solid #dfe6ed;
+  border-radius: 8px;
+  background-color: #f5f8fb;
+  isolation: isolate;
+}
+.paper-visual span {
+  position: absolute;
+  left: 10px;
+  bottom: 8px;
+  z-index: 3;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255,255,255,.88);
+  color: #18324f;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: .02em;
+  box-shadow: 0 2px 7px rgba(31,48,67,.08);
+}
+.paper-visual::before,
+.paper-visual::after { content: ""; position: absolute; }
+.visual-afb { background: linear-gradient(135deg, #dff1ff, #f8e9ff); }
+.visual-afb::before { inset: 24px 16px 27px; border-radius: 7px; background: linear-gradient(90deg, #2d7ac2 0 23%, transparent 23% 38%, #8b5cc2 38% 62%, transparent 62% 77%, #ef8b73 77%); }
+.visual-afb::after { left: 51px; right: 51px; top: 52px; height: 3px; background: repeating-linear-gradient(90deg, #fff 0 7px, transparent 7px 12px); box-shadow: -23px 0 0 #fff, 23px 0 0 #fff; }
+.visual-demo { background: linear-gradient(135deg, #e6f7f1, #e9f1ff); }
+.visual-demo::before { width: 23px; height: 23px; left: 28px; top: 35px; border: 4px solid #2a8d76; border-radius: 50%; box-shadow: 42px -12px 0 -4px #fff, 42px -12px 0 0 #4d78c9, 84px 8px 0 -4px #fff, 84px 8px 0 0 #925fc1; }
+.visual-demo::after { left: 49px; top: 49px; width: 89px; height: 25px; border-top: 3px dashed rgba(53,83,117,.6); transform: rotate(6deg); }
+.visual-asv { background: linear-gradient(180deg, #f2f7fb, #e5f1ff); }
+.visual-asv::before { left: 18px; right: 16px; top: 54px; height: 3px; background: #7096bf; box-shadow: 26px -15px 0 -1px #b4c9dd, 59px 15px 0 -1px #b4c9dd, 93px -10px 0 -1px #b4c9dd; }
+.visual-asv::after { left: 110px; top: 30px; width: 17px; height: 52px; border-radius: 9px; background: rgba(239,139,115,.85); box-shadow: 0 0 0 5px rgba(239,139,115,.16); }
+.visual-sign { background: linear-gradient(135deg, #fff3e8, #edf0ff); }
+.visual-sign::before { left: 29px; top: 22px; width: 90px; height: 64px; border: 2px solid #6476b9; border-radius: 9px; background: repeating-linear-gradient(0deg, rgba(101,118,185,.12) 0 12px, transparent 12px 20px); }
+.visual-sign::after { right: 20px; top: 31px; width: 8px; height: 8px; border-radius: 50%; background: #f08b6e; box-shadow: 0 18px 0 #7b67bd, 0 36px 0 #2b8a6e; }
+.visual-attn { background: linear-gradient(135deg, #e8f4ff, #f8edff); }
+.visual-attn::before { inset: 18px; background: linear-gradient(90deg, transparent 0 17%, #3a83ca 17% 26%, transparent 26% 43%, #8a66be 43% 57%, transparent 57% 74%, #ef8b73 74% 83%, transparent 83%); }
+.visual-attn::after { inset: 29px 18px; background: repeating-linear-gradient(0deg, rgba(255,255,255,.82) 0 3px, transparent 3px 11px); }
+.visual-dyadic { background: linear-gradient(135deg, #efeaff, #eaf7f2); }
+.visual-dyadic::before { left: 34px; top: 26px; width: 25px; height: 25px; border: 4px solid #7152b4; border-radius: 50%; box-shadow: 58px 5px 0 -4px #fff, 58px 5px 0 0 #2b8a6e; }
+.visual-dyadic::after { left: 50px; top: 59px; width: 63px; height: 30px; border-top: 3px dashed #85909d; border-radius: 50%; }
+.visual-token { background: linear-gradient(135deg, #eaf7f2, #eef4ff); }
+.visual-token::before { left: 21px; top: 26px; width: 22px; height: 22px; background: #2b8a6e; border-radius: 4px; box-shadow: 31px 0 #5b9bd5, 62px 0 #7b67bd, 93px 0 #ef8b73, 15px 31px #66b49f, 46px 31px #7fb0de, 77px 31px #9d8bcc; }
+.visual-token::after { right: 17px; top: 21px; width: 10px; height: 66px; border-radius: 4px; background: linear-gradient(#2b8a6e 0 33%, #7b67bd 33% 67%, #ef8b73 67%); }
+.visual-bio { background: linear-gradient(135deg, #f4f0ff, #ecf8f3); }
+.visual-bio::before { left: 24px; top: 25px; width: 18px; height: 18px; border: 3px solid #7856b8; border-radius: 50%; box-shadow: 35px 20px 0 -3px #fff, 35px 20px 0 0 #2b8a6e, 70px -4px 0 -3px #fff, 70px -4px 0 0 #ef8b73, 100px 27px 0 -3px #fff, 100px 27px 0 0 #407fc1; }
+.visual-bio::after { left: 39px; top: 40px; width: 94px; height: 38px; border-top: 3px solid rgba(91,102,122,.5); border-bottom: 3px solid rgba(91,102,122,.35); transform: rotate(7deg); }
+.visual-pace { background: linear-gradient(135deg, #fff5df, #edf4ff); }
+.visual-pace::before { left: 21px; right: 17px; bottom: 22px; height: 52px; background: linear-gradient(90deg, #efb84c 0 16%, transparent 16% 20%, #5b9bd5 20% 48%, transparent 48% 52%, #7b67bd 52% 77%, transparent 77% 81%, #2b8a6e 81%); clip-path: polygon(0 100%,0 67%,16% 67%,16% 44%,48% 44%,48% 20%,77% 20%,77% 0,100% 0,100% 100%); }
+.visual-knot { background: linear-gradient(135deg, #edf6ff, #f7ecff); }
+.visual-knot::before { left: 41px; top: 15px; width: 70px; height: 70px; border: 5px solid #7657b8; border-radius: 50% 45% 55% 40%; transform: rotate(35deg); box-shadow: inset 0 0 0 10px rgba(91,155,213,.18); }
+.visual-knot::after { left: 28px; top: 48px; width: 98px; height: 18px; border-top: 5px solid #5b9bd5; border-radius: 50%; transform: rotate(-26deg); }
+.visual-gui { background: linear-gradient(135deg, #e8f5ff, #f3f7fb); }
+.visual-gui::before { inset: 16px; border: 2px solid #6b87a6; border-radius: 6px; background: linear-gradient(#d8e6f4 0 18px, transparent 18px), linear-gradient(90deg, #eaf1f8 0 34%, transparent 34%); }
+.visual-gui::after { right: 27px; bottom: 25px; width: 40px; height: 22px; border: 3px solid #ef8b73; border-radius: 4px; box-shadow: 0 0 0 5px rgba(239,139,115,.16); }
+
+.education-list { display: grid; gap: 18px; }
+.education-item {
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.education-logo {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+}
+.education-logo img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+.education-item h3 { margin: 0 0 3px; font-size: 15px; }
+.education-item h3 a { color: var(--ink); text-decoration: none; }
+.education-item h3 a:hover { color: var(--blue); }
+.education-item p { margin: 1px 0; color: var(--muted); font-size: 12.8px; }
+.education-item p strong { color: #3d4956; }
+.clean-list { margin-top: 0; }
+.honors-list { max-width: 680px; }
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 58px;
+  padding: 20px 0 32px;
+  border-top: 1px solid var(--line);
+  color: #77818c;
+  font-size: 11px;
+}
+.footer p { margin: 0; }
+.footer a { color: #65727f; text-decoration: none; }
+
+@media (max-width: 980px) {
+  .layout { grid-template-columns: 190px minmax(0, 1fr); gap: 34px; }
+  .profile__photo { width: 130px; height: 130px; }
+  .paper { grid-template-columns: 155px minmax(0, 1fr); }
+  .paper--compact { grid-template-columns: 135px minmax(0, 1fr); }
+}
+
+@media (max-width: 760px) {
+  html { scroll-padding-top: 64px; }
+  .topbar__inner { min-height: 52px; padding: 0 17px; }
+  .nav-toggle {
+    display: inline-flex;
+    width: 38px;
+    height: 36px;
+    margin-left: auto;
+    padding: 8px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    cursor: pointer;
+  }
+  .nav-toggle span:not(.sr-only) { display: block; height: 2px; background: #4d5966; border-radius: 2px; }
+  .nav {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 52px;
+    padding: 10px 17px 14px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 10px 22px rgba(30,48,66,.08);
+  }
+  .nav.is-open { display: flex; }
+  .nav a { padding: 9px 7px; }
+  .nav a::after { display: none; }
+  .layout {
+    width: min(100% - 30px, 680px);
+    margin-top: 24px;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .profile {
+    position: static;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    column-gap: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .profile__photo { width: 96px; height: 96px; grid-row: 1 / span 2; }
+  .profile__identity h1 { margin-top: 4px; }
+  .profile__identity h1 span { display: inline; margin-left: 5px; }
+  .profile__role { margin-bottom: 7px; }
+  .profile__bio,
+  .profile__meta,
+  .profile__links { grid-column: 1 / -1; }
+  .profile__bio { margin-top: 15px; }
+  .profile__links { display: flex; flex-wrap: wrap; gap: 5px 16px; }
+  .section { margin-top: 38px; }
+  .section > h2 { font-size: 20px; }
+  .interest-grid { grid-template-columns: 1fr; }
+  .paper,
+  .paper--compact { grid-template-columns: 130px minmax(0, 1fr); gap: 13px; }
+  .paper-visual,
+  .paper-media,
+  .paper--compact .paper-visual,
+  .paper--compact .paper-media { min-height: 88px; }
+  .paper-media img,
+  .paper--compact .paper-media img { min-height: 88px; }
+  .experience__header { flex-direction: column; gap: 1px; }
+  .experience__header time { order: -1; }
+}
+
+@media (max-width: 520px) {
+  body { font-size: 14px; }
+  .profile { grid-template-columns: 82px 1fr; }
+  .profile__photo { width: 78px; height: 78px; }
+  .profile__identity h1 { font-size: 19px; }
+  .profile__identity h1 span { display: block; margin-left: 0; }
+  .opportunity-banner { padding: 14px; }
+  .timeline li { grid-template-columns: 66px 1fr; gap: 9px; }
+  .experience { grid-template-columns: 42px 1fr; gap: 11px; }
+  .experience__logo { width: 38px; height: 38px; }
+  .experience__logo svg { width: 32px; height: 32px; }
+  .paper,
+  .paper--compact { grid-template-columns: 1fr; }
+  .paper-visual,
+  .paper-media,
+  .paper--compact .paper-visual,
+  .paper--compact .paper-media { min-height: 120px; }
+  .paper-media img,
+  .paper--compact .paper-media img { min-height: 120px; }
+  .education-item { grid-template-columns: 46px 1fr; gap: 12px; }
+  .education-logo { width: 42px; height: 42px; }
+  .education-logo img { width: 40px; height: 40px; }
+  .footer { align-items: flex-start; flex-direction: column; gap: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+}
+
+  </style>
+  <script defer>
+(() => {
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.nav');
+  const links = [...document.querySelectorAll('.nav a')];
+  const sections = links
+    .map((link) => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  const closeNav = () => {
+    if (!toggle || !nav) return;
+    nav.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+  };
+
+  toggle?.addEventListener('click', () => {
+    const open = nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+
+  links.forEach((link) => link.addEventListener('click', closeNav));
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeNav();
+  });
+
+  const setActiveLink = (id) => {
+    links.forEach((link) => {
+      const active = link.getAttribute('href') === `#${id}`;
+      link.classList.toggle('is-active', active);
+      if (active) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    });
+  };
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActiveLink(visible.target.id);
+      },
+      { rootMargin: '-18% 0px -68% 0px', threshold: [0.01, 0.15, 0.35] }
+    );
+    sections.forEach((section) => observer.observe(section));
+  }
+
+  const year = document.querySelector('#current-year');
+  if (year) year.textContent = String(new Date().getFullYear());
+})();
+
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="topbar" id="home">
+    <div class="topbar__inner">
+      <a class="brand" href="#home" aria-label="Xuehan Hou homepage">XH</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span><span></span><span class="sr-only">Toggle navigation</span>
+      </button>
+      <nav class="nav" id="site-nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#news">News</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#honors">Honors</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="profile" aria-label="Profile">
+      <img class="profile__photo" src="https://avatars.githubusercontent.com/u/92449351?v=4" alt="Portrait of Xuehan Hou" width="200" height="280">
+      <div class="profile__identity">
+        <h1>Xuehan Hou <span>侯雪晗</span>
+</h1>
+        <p class="profile__role">M.S. Student in Computer Science<br>Peking University</p>
+      </div>
+      <p class="profile__bio">Multimodal generation, video generation, world models, and embodied intelligence.</p>
+      <ul class="profile__meta">
+        <li>
+<span class="meta-icon" aria-hidden="true">◆</span>Peking University</li>
+        <li>
+<span class="meta-icon" aria-hidden="true">✦</span>Open to Ph.D. opportunities</li>
+      </ul>
+      <div class="profile__links" aria-label="External profiles">
+        <a href="mailto:houxuehan@stu.pku.edu.cn" aria-label="Email Xuehan Hou">
+          <svg viewbox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5Zm2 2v.5l7 5 7-5V7H5Zm14 10V9.9l-7 5-7-5V17h14Z"></path></svg>
+          Email
+        </a>
+        <a href="https://github.com/roboticwink1" target="_blank" rel="noreferrer">
+          <svg viewbox="0 0 24 24" aria-hidden="true"><path d="M12 .7a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.2.8-.6v-2.2c-3.4.7-4.1-1.4-4.1-1.4-.5-1.4-1.3-1.7-1.3-1.7-1.1-.8.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0C14.8 4 16 4.3 16 4.3c.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.7c0 .4.2.7.8.6A11.5 11.5 0 0 0 12 .7Z"></path></svg>
+          GitHub
+        </a>
+      </div>
+    </aside>
+
+    <main class="content" id="main-content">
+      <section class="intro" id="about" aria-labelledby="about-heading">
+        <div class="opportunity-banner">
+          <div class="opportunity-banner__eyebrow">Ph.D. Applications · 2027 Intake</div>
+          <strong>Open to research conversations</strong>
+          <p>I am interested in Ph.D. opportunities in multimodal generation, video generation, world models, and embodied intelligence.</p>
+        </div>
+
+        <h2 class="sr-only" id="about-heading">About me</h2>
+        <p>Hi, I’m <strong>Xuehan Hou (侯雪晗)</strong>, a master’s student in Computer Application Technology at <a href="https://english.pku.edu.cn/" target="_blank" rel="noreferrer">Peking University</a>. I received my bachelor’s degree in Software Engineering from <a href="https://en.xjtu.edu.cn/" target="_blank" rel="noreferrer">Xi’an Jiaotong University</a>, where I ranked <strong>3/140</strong>.</p>
+        <p>My research studies how multimodal models can understand and generate temporally coherent, physically plausible, and controllable visual dynamics. I am particularly interested in connecting video generation with world models and embodied intelligence.</p>
+      </section>
+
+      <section class="section" id="news" aria-labelledby="news-title">
+        <h2 id="news-title">
+<span aria-hidden="true">◆</span> News</h2>
+        <ul class="timeline news-list">
+          <li>
+<time>2026.08</time><div>Released <strong>Hallucination-Free GUI Grounding</strong> as an arXiv preprint.</div>
+</li>
+          <li>
+<time>2026</time><div>Served as a reviewer for the <strong>NeurIPS 2026 Evaluations &amp; Datasets Track</strong>.</div>
+</li>
+          <li>
+<time>2026.02</time><div>Joined <strong>Tencent Shannon Lab</strong> as a research intern.</div>
+</li>
+          <li>
+<time>2026</time><div>
+<strong>Anchor Frame Bridging</strong> was accepted to ICLR 2026.</div>
+</li>
+          <li>
+<time>2025.12</time><div>Joined the <strong>Institute of Automation, Chinese Academy of Sciences</strong> as a research intern.</div>
+</li>
+        </ul>
+      </section>
+
+      <section class="section" id="research" aria-labelledby="research-title">
+        <h2 id="research-title">
+<span aria-hidden="true">◇</span> Research Interests</h2>
+        <div class="interest-grid">
+          <article>
+            <span>01</span>
+            <h3>Controllable Video Generation</h3>
+            <p>Long-range temporal coherence, multi-action generation, sign-language synthesis, and multi-granular control.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Multimodal Video Intelligence</h3>
+            <p>Streaming video understanding, asynchronous response, fine-grained triggering, and rigorous evaluation.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>World Models</h3>
+            <p>Learning physical and temporal dynamics for interactive generation, future prediction, and persistent visual environments.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Embodied Intelligence</h3>
+            <p>Connecting multimodal perception and generative dynamics to agents that reason and act in changing environments.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section publications" id="publications" aria-labelledby="publications-title">
+        <h2 id="publications-title">
+<span aria-hidden="true">▤</span> Publications</h2>
+        <p class="section-note">*: indicates equal contribution; #: indicates corresponding author.</p>
+<h3 class="subsection-title">First-Author Publications</h3>
+
+        <article class="paper">
+          <div class="paper-media"><img src="assets/images/afb-intro.png" alt="Anchor Frame Bridging method overview" loading="lazy"></div>
+<div class="paper__body">
+            <div class="paper__badges">
+<span class="badge badge--accepted">ICLR 2026</span><span class="badge">Accepted</span>
+</div>
+            <h4>Anchor Frame Bridging for Coherent First-Last Frame Video Generation</h4>
+            <p class="authors"><strong>Xuehan Hou</strong>, Meng Fan, Pengchong Qiao, Zesen Cheng, Yian Zhao, Lei Zhu, Kaiwen Cheng, Chang Liu, Jie Chen#</p>
+<p class="paper__summary">A training-free anchor-frame bridging method that transfers semantic constraints from both boundary frames to improve temporal coherence across a generated video.</p>
+            <div class="paper__links"><a href="https://openreview.net/forum?id=isNjWnVsUR" target="_blank" rel="noreferrer">Paper</a></div>
+          </div>
+        </article>
+
+        <article class="paper">
+          <div class="paper-visual visual-demo" role="img" aria-label="Abstract illustration of a chain of human motions"><span>DemoChain</span></div>
+          <div class="paper__body">
+            <div class="paper__badges">
+<span class="badge badge--revision">IEEE TCSVT</span><span class="badge">Minor Revision</span>
+</div>
+            <h4>DemoChain: Decoupled Motion-Chain for Multi-Action Video Generation</h4>
+            <p class="authors"><strong>Xuehan Hou</strong>, Hongyu Zhang, Ailing Zhang, Ruochong Zheng, Yufan Deng, Yuxin Qin, Mulan Yang, Chang Liu, Jie Chen#</p>
+<p class="paper__summary">A multi-action human video generation framework that extracts physical motion priors from multimodal language models and visualizes them through image-agent guidance.</p>
+          </div>
+        </article>
+
+        <article class="paper">
+          <div class="paper-visual visual-asv" role="img" aria-label="Abstract streaming timeline with a fine-grained trigger"><span>ASVBench</span></div>
+          <div class="paper__body">
+            <div class="paper__badges">
+<span class="badge badge--review">AAAI 2027</span><span class="badge">Under Review</span>
+</div>
+            <h4>ASVBench: Asynchronous Response to Fine-Grained Triggers in Streaming Videos</h4>
+            <p class="authors"><strong>Xuehan Hou</strong>, Zesen Cheng, Tiange Zhang, Hongyu Zhang, Ailing Zhang, Mujie Lin, Chang Liu, Jie Chen#</p>
+<p class="paper__summary">A benchmark for asynchronous responses to fine-grained triggers in streaming video, evaluating temporal delay and cognitive difficulty beyond immediate question answering.</p>
+          </div>
+        </article>
+
+        <article class="paper">
+          <div class="paper-visual visual-sign" role="img" aria-label="Abstract multi-level controls for sign-language video"><span>SignControl</span></div>
+          <div class="paper__body">
+            <div class="paper__badges">
+<span class="badge badge--review">WACV 2027</span><span class="badge">Under Review</span>
+</div>
+            <h4>SignControl: Multi-Granular Control for Sign Language Video Generation</h4>
+            <p class="authors"><strong>Xuehan Hou</strong>, Liuzhou Zhang, Biao Wu, Zeyu Zhang, Huacan Wang, Qizhen Lan, Ronghao Chen, Renda Han, Wenxin Zhang, Hongyang He, Hoi Leong Lee, Yang Zhao, Zheng Zhu#</p>
+<p class="paper__summary">A hierarchical multimodal control framework that coordinates pose, optical flow, and depth while remaining robust to incomplete control signals.</p>
+          </div>
+        </article>
+
+        <h3 class="subsection-title">Co-authored Publications</h3>
+
+        <article class="paper paper--compact">
+          <div class="paper-media"><img src="assets/images/comp-attn-intro.png" alt="Comp-Attn introduction figure" loading="lazy"></div>
+<div class="paper__body">
+            <div class="paper__badges"><span class="badge badge--accepted">ICML 2026</span></div>
+            <h4>Comp-Attn: Present-and-Align Attention for Compositional Video Generation</h4>
+            <p class="authors">Hongyu Zhang*, Yufan Deng*, Shenghai Yuan, Yian Zhao, Peng Jin, <strong>Xuehan Hou</strong>, Chang Liu, Jie Chen#</p>
+<div class="paper__links"><a href="https://arxiv.org/abs/2503.14428" target="_blank" rel="noreferrer">Paper</a></div>
+          </div>
+        </article>
+
+        <article class="paper paper--compact">
+          <div class="paper-visual visual-dyadic" role="img" aria-label="Abstract dyadic three-dimensional dialogue illustration"><span>RealDyadic</span></div>
+          <div class="paper__body">
+            <div class="paper__badges"><span class="badge badge--accepted">ECCV 2026</span></div>
+            <h4>RealDyadic: Synthesizing Realistic Dyadic 3D Dialogue with Neural Appearance Priors</h4>
+            <p class="authors">Lei Zhu, Lijian Lin, Ye Zhu, <strong>Xuehan Hou</strong>, Jiahao Wu, Yu Li, Yunfei Liu, Jie Chen</p>
+</div>
+        </article>
+
+        <article class="paper paper--compact">
+          <div class="paper-visual visual-token" role="img" aria-label="Abstract gated visual tokenization illustration"><span>ModUni</span></div>
+          <div class="paper__body">
+            <div class="paper__badges"><span class="badge badge--accepted">ACM MM 2026</span></div>
+            <h4>ModUni: Unified Visual Tokenization via Pre-Quantization Gating</h4>
+            <p class="authors">Xin Shan, Peng Jin, Zheng Liu, Zijun Liao, Yufan Deng, Yiheng Tao, <strong>Xuehan Hou</strong>, Mujie Lin, Shuyu Wang</p>
+</div>
+        </article>
+
+        <article class="paper paper--compact">
+          <div class="paper-visual visual-bio" role="img" aria-label="Abstract biomolecular hierarchy illustration"><span>BiHiTo</span></div>
+          <div class="paper__body">
+            <div class="paper__badges"><span class="badge badge--accepted">AAAI 2026</span></div>
+            <h4>BiHiTo: Biomolecular Hierarchy-inspired Tokenization</h4>
+            <p class="authors">Ruochong Zheng*, Yutian Liu*, Yian Zhao, Zhiwei Nie, <strong>Xuehan Hou</strong>, Chang Liu#, Siwei Ma#, Youdong Mao#, Jie Chen#</p>
+<div class="paper__links"><a href="https://doi.org/10.1609/aaai.v40i34.40119" target="_blank" rel="noreferrer">Paper</a></div>
+</div>
+        </article>
+
+        <article class="paper paper--compact">
+          <div class="paper-visual visual-pace" role="img" aria-label="Abstract diffusion cache schedule illustration"><span>PACE</span></div>
+          <div class="paper__body">
+            <div class="paper__badges">
+<span class="badge badge--review">AAAI 2027</span><span class="badge">Under Review</span>
+</div>
+            <h4>PACE: Phase-Aware Cache Scheduling for Accelerating Diffusion Models</h4>
+            <p class="authors">Zhongjing Du, <strong>Xuehan Hou</strong>, Lei Zhu, Xiao Chen, Yuxuan Chen, Zhihao Li, Hongbo Jin, Chang Liu, Jie Chen</p>
+</div>
+        </article>
+
+        <article class="paper paper--compact">
+          <div class="paper-visual visual-knot" role="img" aria-label="Abstract spectral knot topology illustration"><span>SpecKnot</span></div>
+          <div class="paper__body">
+            <div class="paper__badges">
+<span class="badge badge--review">AAAI 2027</span><span class="badge">Under Review</span>
+</div>
+            <h4>SpecKnot: Spectrally Guided Topology Modeling for Knotted Protein Backbone Generation</h4>
+            <p class="authors">Meng Fan, Yutian Liu, <strong>Xuehan Hou</strong>, Hongxin Fu, Kaiwen Cheng, Yu-Xiang Wang, Chang Liu, Zhiwei Nie, Wenbin Zhang, Jie Chen</p>
+</div>
+        </article>
+
+        <article class="paper paper--compact">
+          <div class="paper-media"><img src="assets/images/gui-intro.png" alt="GUI grounding framework overview" loading="lazy"></div>
+<div class="paper__body">
+            <div class="paper__badges">
+<span class="badge badge--preprint">arXiv:2608.09654</span><span class="badge">Preprint</span>
+</div>
+            <h4>Hallucination-Free GUI Grounding via Regression-Free Layout-Aware Matching</h4>
+            <p class="authors">Yuke Li, <strong>Xuehan Hou</strong></p>
+<div class="paper__links"><a href="https://arxiv.org/abs/2608.09654" target="_blank" rel="noreferrer">Paper</a></div>
+          </div>
+        </article>
+        </section>
+
+      <section class="section" id="experience" aria-labelledby="experience-title">
+        <h2 id="experience-title">
+<span aria-hidden="true">▣</span> Research Experience</h2>
+
+        <article class="experience">
+          <div class="experience__logo logo--tencent" role="img" aria-label="Tencent logo">
+            <svg viewbox="0 0 64 64" aria-hidden="true">
+              <path d="M9 19h20L34 5l25 24H37L31 59H16l7-30H9Z" fill="#0759d9"></path>
+              <path d="M29 19h14l16 10H37Z" fill="#2d86ff" opacity=".72"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="experience__header">
+              <div>
+                <h3>Tencent · Shannon Lab</h3>
+                <p>Algorithm Research Intern</p>
+              </div>
+              <time>Feb. 2026 — Present</time>
+            </div>
+            <ul>
+              <li>
+<strong>Game clipping detection and repair:</strong> built anomaly-detection data and a benchmark for geometric intersection and occlusion failures in game videos.</li>
+              <li>
+<strong>Streaming audio-visual editing:</strong> developed an LTX-2.3-based video-to-video editing framework, trained a bidirectional audio-visual editor, and designed a three-stage causal distillation route covering attention causality, step reduction, and CFG-free inference.</li>
+              <li>
+<strong>Real-time game frame generation:</strong> designed a pseudo G-buffer pipeline that estimates depth, motion vectors, camera pose, and occlusion from conventional videos; explored diffusion-teacher distillation and difficult-region synthesis.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="experience">
+          <div class="experience__logo logo--cas" role="img" aria-label="Chinese Academy of Sciences icon">
+            <svg viewbox="0 0 64 64" aria-hidden="true">
+              <circle cx="32" cy="32" r="7" fill="#4b55b8"></circle>
+              <ellipse cx="32" cy="32" rx="24" ry="10" fill="none" stroke="#4b55b8" stroke-width="3"></ellipse>
+              <ellipse cx="32" cy="32" rx="24" ry="10" fill="none" stroke="#7079d2" stroke-width="3" transform="rotate(60 32 32)"></ellipse>
+              <ellipse cx="32" cy="32" rx="24" ry="10" fill="none" stroke="#263989" stroke-width="3" transform="rotate(120 32 32)"></ellipse>
+              <circle cx="53" cy="32" r="3.3" fill="#ff9a56"></circle>
+            </svg>
+          </div>
+          <div>
+            <div class="experience__header">
+              <div>
+                <h3>Institute of Automation, Chinese Academy of Sciences</h3>
+                <p>Research Intern</p>
+              </div>
+              <time>Dec. 2025 — Feb. 2026</time>
+            </div>
+            <ul>
+              <li>Studied brain-inspired linear attention for unified multimodal understanding and generation.</li>
+              <li>Trained Show-o2 and decoupled two attention parameter groups for separate storage and optimization, enabling a “decouple first, linearize next” model-conversion path.</li>
+              <li>Reproduced and trained SANA, explored linear attention for image/video generation, and investigated high-resolution image distortions.</li>
+            </ul>
+          </div>
+        </article>
+      </section>
+
+      <section class="section" id="education" aria-labelledby="education-title">
+        <h2 id="education-title">
+<span aria-hidden="true">▰</span> Education</h2>
+        <div class="education-list">
+          <article class="education-item">
+            <div class="education-logo"><img src="assets/images/pku-logo.png" alt="Peking University logo" loading="lazy"></div>
+<div>
+              <h3><a href="https://english.pku.edu.cn/" target="_blank" rel="noreferrer">Peking University</a></h3>
+              <p><strong>M.S. in Computer Application Technology</strong> · Sep. 2024 — Present</p>
+              <p>Advisor: Prof. Jie Chen · GPA: 3.89/4.00</p>
+            </div>
+          </article>
+          <article class="education-item">
+            <div class="education-logo"><img src="assets/images/xjtu-logo.png" alt="Xi'an Jiaotong University logo" loading="lazy"></div>
+<div>
+              <h3><a href="https://en.xjtu.edu.cn/" target="_blank" rel="noreferrer">Xi’an Jiaotong University</a></h3>
+              <p><strong>B.Eng. in Software Engineering</strong> · Sep. 2020 — Jun. 2024</p>
+              <p>Average: 88.59/100 · Rank: 3/140</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="service" aria-labelledby="service-title">
+        <h2 id="service-title">
+<span aria-hidden="true">✧</span> Academic Service</h2>
+        <ul class="clean-list">
+          <li>
+<strong>Reviewer</strong>, NeurIPS 2026 Evaluations &amp; Datasets Track</li>
+          <li>
+<strong>Teaching Assistant</strong>, Interactive Intelligence, Peking University</li>
+          <li>
+<strong>Conference participation</strong>, VALSE 2026 and CVPR 2026</li>
+        </ul>
+      </section>
+
+      <section class="section" id="honors" aria-labelledby="honors-title">
+        <h2 id="honors-title">
+<span aria-hidden="true">◆</span> Honors &amp; Awards</h2>
+        <ul class="timeline honors-list">
+          <li>
+<time>2025</time><div>Peking University Academic Excellence Award</div>
+</li>
+          <li>
+<time>2024</time><div>Outstanding Graduate, Xi’an Jiaotong University</div>
+</li>
+          <li>
+<time>2023</time><div>Finalist, Mathematical Contest in Modeling</div>
+</li>
+          <li>
+<time>2022</time><div>National Scholarship</div>
+</li>
+          <li>
+<time>2022</time><div>National Second Prize, “Challenge Cup” Entrepreneurship Competition</div>
+</li>
+          <li>
+<time>2021</time><div>National Third Prize, National English Competition for College Students</div>
+</li>
+        </ul>
+      </section>
+
+      <footer class="footer">
+        <p>© <span id="current-year">2026</span> Xuehan Hou. Built as a lightweight static academic homepage.</p>
+        <a href="#home">Back to top ↑</a>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
