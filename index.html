@@ -289,20 +289,32 @@ button, a { -webkit-tap-highlight-color: transparent; }
   gap: 16px;
   margin: 0 0 26px;
 }
-.experience__mark,
+.experience__logo,
 .institution-mark {
   display: grid;
   place-items: center;
   width: 48px;
   height: 48px;
-  color: #fff;
-  border-radius: 9px;
-  font-weight: 850;
-  letter-spacing: -.03em;
+  border-radius: 10px;
   box-shadow: 0 5px 14px rgba(22, 48, 83, .12);
 }
-.mark--tencent { background: linear-gradient(145deg, #1767ca, #0e4290); }
-.mark--cas { background: linear-gradient(145deg, #7a58bd, #4d3189); font-size: 11px; }
+.experience__logo {
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e1e7ed;
+}
+.experience__logo svg {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+.logo--tencent { background: linear-gradient(145deg, #f8fbff, #eef5ff); }
+.logo--cas { background: linear-gradient(145deg, #fbfaff, #f1f2ff); }
+.institution-mark {
+  color: #fff;
+  font-weight: 850;
+  letter-spacing: -.03em;
+}
 .experience__header {
   display: flex;
   justify-content: space-between;
@@ -578,7 +590,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .opportunity-banner { padding: 14px; }
   .timeline li { grid-template-columns: 66px 1fr; gap: 9px; }
   .experience { grid-template-columns: 42px 1fr; gap: 11px; }
-  .experience__mark { width: 38px; height: 38px; font-size: 10px; }
+  .experience__logo { width: 38px; height: 38px; }
+  .experience__logo svg { width: 32px; height: 32px; }
   .paper,
   .paper--compact { grid-template-columns: 1fr; }
   .paper-visual,
@@ -710,7 +723,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
         </div>
 
         <h2 class="sr-only" id="about-heading">About me</h2>
-        <p>Hi, I’m <strong>Xuehan Hou (侯雪晗)</strong>, a master’s student in Computer Application Technology at <a href="https://english.pku.edu.cn/" target="_blank" rel="noreferrer">Peking University</a>, advised by Prof. <strong>Jie Chen</strong>. I received my bachelor’s degree in Software Engineering from <a href="https://en.xjtu.edu.cn/" target="_blank" rel="noreferrer">Xi’an Jiaotong University</a>, where I ranked <strong>3/140</strong>.</p>
+        <p>Hi, I’m <strong>Xuehan Hou (侯雪晗)</strong>, a master’s student in Computer Application Technology at <a href="https://english.pku.edu.cn/" target="_blank" rel="noreferrer">Peking University</a>. I received my bachelor’s degree in Software Engineering from <a href="https://en.xjtu.edu.cn/" target="_blank" rel="noreferrer">Xi’an Jiaotong University</a>, where I ranked <strong>3/140</strong>.</p>
         <p>My research studies how multimodal models can understand and generate temporally coherent, physically plausible, and controllable visual dynamics. I am particularly interested in connecting video generation with world models and embodied intelligence.</p>
       </section>
 
@@ -729,7 +742,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
         <h2 id="experience-title"><span aria-hidden="true">▣</span> Research Experience</h2>
 
         <article class="experience">
-          <div class="experience__mark mark--tencent">T</div>
+          <div class="experience__logo logo--tencent" role="img" aria-label="Tencent logo">
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+              <path d="M9 19h20L34 5l25 24H37L31 59H16l7-30H9Z" fill="#0759d9"/>
+              <path d="M29 19h14l16 10H37Z" fill="#2d86ff" opacity=".72"/>
+            </svg>
+          </div>
           <div>
             <div class="experience__header">
               <div>
@@ -747,12 +765,20 @@ button, a { -webkit-tap-highlight-color: transparent; }
         </article>
 
         <article class="experience">
-          <div class="experience__mark mark--cas">CAS</div>
+          <div class="experience__logo logo--cas" role="img" aria-label="Chinese Academy of Sciences icon">
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+              <circle cx="32" cy="32" r="7" fill="#4b55b8"/>
+              <ellipse cx="32" cy="32" rx="24" ry="10" fill="none" stroke="#4b55b8" stroke-width="3"/>
+              <ellipse cx="32" cy="32" rx="24" ry="10" fill="none" stroke="#7079d2" stroke-width="3" transform="rotate(60 32 32)"/>
+              <ellipse cx="32" cy="32" rx="24" ry="10" fill="none" stroke="#263989" stroke-width="3" transform="rotate(120 32 32)"/>
+              <circle cx="53" cy="32" r="3.3" fill="#ff9a56"/>
+            </svg>
+          </div>
           <div>
             <div class="experience__header">
               <div>
                 <h3>Institute of Automation, Chinese Academy of Sciences</h3>
-                <p>Research Intern · Generative Modeling</p>
+                <p>Research Intern</p>
               </div>
               <time>Dec. 2025 — Feb. 2026</time>
             </div>
